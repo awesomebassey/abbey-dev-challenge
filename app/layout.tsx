@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Young_Serif } from "next/font/google";
+import { Providers, fonts } from "@/app/_helpers";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
-const yserif = Young_Serif({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "Abbey Mortgage Bank",
@@ -17,8 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${yserif.className}`}>
-        {children}
+      <body className={`${fonts.outfit.variable} ${fonts.yserif.variable}`}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
