@@ -1,3 +1,5 @@
+"use client"
+
 import { ResetPassword } from "@/actions";
 import { Form, FormInput, TextLink } from "@/components";
 import { PasswordSchema } from "@/schemas";

@@ -1,3 +1,5 @@
+"use client"
+
 import { ForgotPassword } from "@/actions";
 import { Form, FormInput, TextLink } from "@/components";
 import { UsernameSchema } from "@/schemas";
