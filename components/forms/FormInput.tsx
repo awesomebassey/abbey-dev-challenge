@@ -6,24 +6,31 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { FieldErrors } from "react-hook-form";
 import { PiEye, PiEyeSlash } from "react-icons/pi";
 
 export function FormInput({
   type,
   name,
   isRequired,
-  placeholder
+  placeholder,
+  register,
+  errors,
 }: {
-  name?: string;
+  name: string;
   type: "text" | "email" | "number" | "password";
   isRequired?: boolean;
   placeholder?: string;
+  register: any;
+  errors: FieldErrors;
 }) {
   const [show, setShow] = useState<boolean>(false);
+  const errorMessage = errors?.[name]?.message as string
   return (
-    <FormControl>
+    <FormControl isInvalid={!!errorMessage}>
       <InputGroup>
         <Input
           id={name}
@@ -31,6 +38,7 @@ export function FormInput({
           placeholder={placeholder}
           bg={"white"}
           isRequired={isRequired}
+          {...register(name)}
           w={"full"}
           rounded={8}
           _focusVisible={{ borderColor: "brand.500", boxShadow: "brand.800" }}
@@ -51,6 +59,11 @@ export function FormInput({
           </InputRightElement>
         )}
       </InputGroup>
+      {errorMessage && (
+        <Text color={"red"} fontSize={"smaller"} mt={2}>
+          {errorMessage}
+        </Text>
+      )}
     </FormControl>
   );
 }
