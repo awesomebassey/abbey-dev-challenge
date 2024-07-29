@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Providers, fonts } from "@/app/_helpers";
 import "./globals.css";
 import { auth } from "@/auth";
+import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {
   title: "Abbey Mortgage Bank",
@@ -13,12 +14,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth()
+  const session = await auth();
 
   return (
     <html lang="en">
       <body className={`${fonts.outfit.variable} ${fonts.yserif.variable}`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <SessionProvider session={session}>{children}</SessionProvider>
+        </Providers>
       </body>
     </html>
   );

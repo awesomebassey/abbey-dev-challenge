@@ -41,7 +41,7 @@ export function FormInput({
           {...register(name)}
           w={"full"}
           rounded={8}
-          _focusVisible={{ borderColor: "brand.500", boxShadow: "brand.800" }}
+          _focusVisible={{ borderColor: "secondary.500", boxShadow: "secondary.800" }}
         />
         {type === "password" && (
           <InputRightElement marginRight={1}>

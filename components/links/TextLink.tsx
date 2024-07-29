@@ -16,7 +16,7 @@ export function TextLink({
     <Link
       as={NextLink}
       href={href}
-      color={color ?? "brand.500"}
+      color={color ?? "secondary.500"}
       fontWeight={fontWeight}
     >
       {text}

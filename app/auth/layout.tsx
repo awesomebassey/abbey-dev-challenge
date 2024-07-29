@@ -17,8 +17,9 @@ export default function AuthLayout({
       <VStack
         alignItems={"center"}
         justifyContent={"center"}
-        bg={"brand.800"}
+        bg={"secondary.500"}
         minH={"100vh"}
+        px={5}
       >
         <VStack
           maxW={"md"}
