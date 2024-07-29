@@ -15,7 +15,6 @@ export default function LoginPage() {
         buttonProps={{ mt: 5, text: "Sign In" }}
         schema={LoginSchema}
         action={LoginUser}
-        redirect="/"
       >
         {({ register, errors }) => (
           <Stack w={"full"} textAlign={"start"}>

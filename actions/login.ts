@@ -1,13 +1,16 @@
 "use server";
 
 import { signIn } from "@/auth";
+import { getUserByUsername } from "@/lib";
 import { LoginSchema } from "@/schemas";
 import { AuthError } from "next-auth";
+import { RedirectType, redirect } from "next/navigation";
 import { z } from "zod";
 
 export const LoginUser = async (values: z.infer<typeof LoginSchema>) => {
   const validatedFields = await LoginSchema.parseAsync(values);
   const { username, password } = validatedFields;
+  const user = await getUserByUsername(username);
 
   try {
     await signIn("credentials", {
@@ -33,5 +36,6 @@ export const LoginUser = async (values: z.infer<typeof LoginSchema>) => {
     }
     throw error;
   }
-  return;
+
+  return redirect(user?.first_name ? "/" : "/settings", RedirectType.replace);
 };
