@@ -3,12 +3,7 @@
 import { RegisterUser } from "@/actions";
 import { Form, FormInput, TextLink } from "@/components";
 import { RegisterSchema } from "@/schemas";
-import {
-  Checkbox,
-  Heading,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Checkbox, Heading, Stack, Text } from "@chakra-ui/react";
 import { useState } from "react";
 
 export default function SignupPage() {
@@ -22,7 +17,11 @@ export default function SignupPage() {
         buttonProps={{ mt: 5, text: "Create account" }}
         schema={RegisterSchema}
         action={RegisterUser}
-        redirect="/login"
+        redirect="/auth/login"
+        toaster={{
+          title: "Signup Successful!",
+          description: "You can now proceed to login",
+        }}
       >
         {({ register, errors }) => (
           <Stack w={"full"} textAlign={"start"}>
@@ -55,13 +54,18 @@ export default function SignupPage() {
               </>
             ) : (
               <>
-                <Checkbox size={"sm"} colorScheme="brand">
+                <Checkbox
+                  isRequired
+                  onChange={() => setShowPassword(!showPassword)}
+                  size={"sm"}
+                  colorScheme="brand"
+                >
                   <Text fontSize={"sm"}>
                     I have read and agreed to the&nbsp;
                     <TextLink
                       href="#!"
                       text="Terms & Conditions"
-                      color="black"
+                      color="brand.500"
                     />
                   </Text>
                 </Checkbox>
@@ -72,7 +76,7 @@ export default function SignupPage() {
       </Form>
       <Text>
         Already have an account?&nbsp;
-        <TextLink href="/login" text="Login" fontWeight="semibold" />
+        <TextLink href="/auth/login" text="Login" fontWeight="semibold" />
       </Text>
     </Stack>
   );

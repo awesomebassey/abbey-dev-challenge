@@ -19,7 +19,7 @@ export default function ForgotPasswordPage() {
         buttonProps={{ mt: 3, text: "Continue" }}
         schema={UsernameSchema}
         action={ForgotPassword}
-        redirect="/reset-password"
+        redirect="/auth/reset-password"
       >
         {({ register, errors }) => (
           <FormInput
@@ -32,7 +32,7 @@ export default function ForgotPasswordPage() {
           />
         )}
       </Form>
-      <TextLink text="Back to Login" href="/login" fontWeight="semibold" />
+      <TextLink text="Back to Login" href="/auth/login" fontWeight="semibold" />
     </Stack>
   );
 }

@@ -22,7 +22,7 @@ export function Form<TSchema>({
     errors: FieldErrors | undefined;
   }) => ReactNode;
   schema: z.Schema<TSchema>;
-  action: (values: any) => Promise<{ data?: any; error?: any }>;
+  action: (values: any) => Promise<{ data?: any; error?: any } | undefined>;
   defaultValues?: z.Schema<TSchema>;
   redirect?: string;
   buttonProps: {

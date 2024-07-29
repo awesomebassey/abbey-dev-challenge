@@ -14,7 +14,7 @@ import {
     return (
       <Alert status={status} borderRadius={8} mb={5} position={"relative"}>
         <AlertIcon />
-        <AlertDescription>{message}</AlertDescription>
+        <AlertDescription fontSize={"sm"}>{message}</AlertDescription>
       </Alert>
     );
   }

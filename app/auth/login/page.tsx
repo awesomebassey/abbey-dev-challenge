@@ -36,7 +36,7 @@ export default function LoginPage() {
               isRequired={true}
             />
             <TextLink
-              href="/forgot-password"
+              href="/auth/forgot-password"
               text="Forgot Password"
               fontWeight="semibold"
             />
@@ -45,7 +45,7 @@ export default function LoginPage() {
       </Form>
       <Text>
         Don't have an account?&nbsp;
-        <TextLink href="/signup" text="Sign Up" fontWeight="semibold" />
+        <TextLink href="/auth/signup" text="Sign Up" fontWeight="semibold" />
       </Text>
     </Stack>
   );
