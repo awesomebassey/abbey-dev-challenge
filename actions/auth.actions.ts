@@ -11,7 +11,6 @@ export const ForgotPassword = async (
 ) => {
   const validatedFields = await UsernameSchema.parseAsync(values);
   const { username } = validatedFields;
-  console.log(username)
   return { data: username };
 };
 
