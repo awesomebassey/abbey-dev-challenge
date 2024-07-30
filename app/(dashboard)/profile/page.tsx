@@ -19,7 +19,7 @@ export default async function UserProfilePage() {
   return (
     <Stack gap={10}>
       <Heading fontSize={{ base: 18, md: 28 }}>My Profile</Heading>
-      <ProfileInfo user={user!} />
+      <ProfileInfo user={user!} currentUser={id} />
       <PeopleCard
         id={id}
         friends={friends!}

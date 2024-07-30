@@ -124,3 +124,19 @@ export const peopleTags: {tag: string; icon: IconType}[] = [
     icon: PiUserSwitchBold
   },
 ]
+
+export const showToast = (
+  toast: any,
+  title: string,
+  status: "success" | "error",
+  description?: string
+) => {
+  toast({
+    id: "toast",
+    title: title,
+    description: description,
+    status: status,
+    duration: 3000,
+    isClosable: true,
+  });
+};

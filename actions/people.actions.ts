@@ -3,6 +3,16 @@
 import { db } from "@/lib";
 import { revalidatePath } from "next/cache";
 
+export const GetUserByUsername = async (username: string) => {
+  try {
+    const data = await db.user.findUnique({ where: { username } });
+    if(!data) throw new Error("User not found!")
+    return { data };
+  } catch (error) {
+    return { error };
+  }
+};
+
 export const GetFriendsForUser = async (id: string) => {
   try {
     const user = await db.user.findUnique({
@@ -15,7 +25,11 @@ export const GetFriendsForUser = async (id: string) => {
   }
 };
 
-export const AddFriend = async (userId: string, friendId: string) => {
+export const AddFriend = async (
+  userId: string,
+  friendId: string,
+  path: string
+) => {
   try {
     await db.userFriend.create({
       data: {
@@ -26,8 +40,29 @@ export const AddFriend = async (userId: string, friendId: string) => {
   } catch (error) {
     return { error };
   }
-  revalidatePath("/profile");
+  revalidatePath(path);
   return { data: "Friend added!" };
+};
+
+export const RemoveFriend = async (
+  userId: string,
+  friendId: string,
+  path: string
+) => {
+  try {
+    await db.userFriend.delete({
+      where: {
+        user_id_friend_id: {
+          user_id: userId,
+          friend_id: friendId,
+        },
+      },
+    });
+  } catch (error) {
+    return { error };
+  }
+  revalidatePath(path);
+  return { data: "Friend removed!" };
 };
 
 export const GetFollowersForUser = async (id: string) => {
@@ -42,7 +77,11 @@ export const GetFollowersForUser = async (id: string) => {
   }
 };
 
-export const FollowUser = async (userId: string, followerId: string) => {
+export const FollowUser = async (
+  userId: string,
+  followerId: string,
+  path: string
+) => {
   try {
     await db.userFollower.create({
       data: {
@@ -53,9 +92,31 @@ export const FollowUser = async (userId: string, followerId: string) => {
   } catch (error) {
     return { error };
   }
-  
-  revalidatePath("/profile");
+
+  revalidatePath(path);
   return { data: "Follower added." };
+};
+
+export const UnfollowUser = async (
+  userId: string,
+  followerId: string,
+  path: string
+) => {
+  try {
+    await db.userFollower.delete({
+      where: {
+        user_id_follower_id: {
+          user_id: userId,
+          follower_id: followerId,
+        },
+      },
+    });
+  } catch (error) {
+    return { error };
+  }
+
+  revalidatePath(path);
+  return { data: "Follower removed!" };
 };
 
 export const GetOtherPeopleForUser = async (id: string) => {
