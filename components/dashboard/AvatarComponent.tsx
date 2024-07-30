@@ -1,12 +1,14 @@
-"use client";
-
-import { Avatar } from "@chakra-ui/react";
-import { useSession } from "next-auth/react";
+import { Avatar, ResponsiveValue } from "@chakra-ui/react";
+import { User } from "@prisma/client";
 import Link from "next/link";
 
-export function AvatarComponent({size}: {size: string}) {
-  const session = useSession();
-  const user = session?.data?.user;
+export function AvatarComponent({
+  size,
+  user,
+}: {
+  size: ResponsiveValue<string>;
+  user: User;
+}) {
   return (
     <Link href={"/profile"}>
       <Avatar

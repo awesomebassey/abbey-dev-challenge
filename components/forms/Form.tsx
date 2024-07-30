@@ -2,7 +2,7 @@
 
 import { z } from "zod";
 import { Button, Stack, useToast } from "@chakra-ui/react";
-import { ReactNode, useTransition } from "react";
+import { ReactNode, useEffect, useTransition } from "react";
 import { FieldErrors, UseFormRegister, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -23,7 +23,7 @@ export function Form<TSchema>({
   }) => ReactNode;
   schema: z.Schema<TSchema>;
   action: (values: any) => Promise<{ data?: any; error?: any } | undefined>;
-  defaultValues?: z.Schema<TSchema>;
+  defaultValues?: any;
   redirect?: string;
   buttonProps: {
     mt: number;
@@ -31,7 +31,7 @@ export function Form<TSchema>({
   };
   toaster?: {
     title: string;
-    description: string;
+    description?: string;
   };
 }) {
   const [isPending, startTransition] = useTransition();
@@ -48,7 +48,12 @@ export function Form<TSchema>({
   } = useForm<z.Schema<TSchema>>({
     resolver: zodResolver(schema),
     defaultValues,
+    mode: "all"
   });
+
+  useEffect(() => {
+    if (defaultValues !== undefined) reset(defaultValues);
+  }, [defaultValues]);
 
   function showToast(title: string, description: string) {
     toast({
@@ -68,7 +73,7 @@ export function Form<TSchema>({
         if (data?.error) {
           throw new Error(data.error);
         }
-        if (toaster) showToast(toaster.title, toaster.description);
+        if (toaster) showToast(toaster.title, toaster.description!);
         if (redirect) {
           return router.push(redirect);
         }

@@ -1,3 +1,7 @@
 .filterToWhite {
     filter: brightness(0) invert(1);
 }
+
+input:read-only {
+    cursor: not-allowed;
+}

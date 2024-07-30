@@ -17,6 +17,7 @@ export function FormInput({
   name,
   isRequired,
   placeholder,
+  readonly,
   register,
   errors,
 }: {
@@ -24,6 +25,7 @@ export function FormInput({
   type: "text" | "email" | "number" | "password";
   isRequired?: boolean;
   placeholder?: string;
+  readonly?: boolean;
   register: any;
   errors: FieldErrors;
 }) {
@@ -38,6 +40,7 @@ export function FormInput({
           placeholder={placeholder}
           bg={"white"}
           isRequired={isRequired}
+          readOnly={readonly}
           {...register(name)}
           w={"full"}
           rounded={8}

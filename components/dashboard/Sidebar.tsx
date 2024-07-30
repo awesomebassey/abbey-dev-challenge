@@ -7,8 +7,9 @@ import { PiArrowCircleRightFill } from "react-icons/pi";
 import { signOut } from "next-auth/react";
 import NextLink from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { User } from "@prisma/client";
 
-export function Sidebar() {
+export function Sidebar({ user }: { user: User }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const params = searchParams.get("q");
@@ -26,7 +27,7 @@ export function Sidebar() {
       p={5}
       bg={"secondary.500"}
       w={"full"}
-      minH={{base: "100vh", md: "90vh"}}
+      minH={{ base: "100vh", md: "90vh" }}
       shadow={"md"}
     >
       {sidemenu.map(({ icon, label, link, query }) => (
@@ -48,7 +49,7 @@ export function Sidebar() {
         </Link>
       ))}
       <Flex mt={"auto"} alignItems={"center"} gap={4}>
-        <AvatarComponent size="sm" />
+        <AvatarComponent size="sm" user={user} />
         <Text
           textDecor={"underline"}
           cursor={"pointer"}

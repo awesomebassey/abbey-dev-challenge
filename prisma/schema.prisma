@@ -15,6 +15,11 @@ model User {
     email         String?   @unique
     emailVerified DateTime?
     password      String
+    phone         String?
+    city          String?
+    state         String?
+    address       String?
+    bgImage       String?
     accounts      Account[]
 
     createdAt DateTime @default(now())

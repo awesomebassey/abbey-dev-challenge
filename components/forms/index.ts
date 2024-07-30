@@ -1,3 +1,6 @@
 export * from "./FormInput"
 export * from "./Form"
 export * from "./AlertComponent"
+export * from "./ProfileForm"
+export * from "./ProfilePasswordForm"
+export * from "./SecuritySettingsForm"

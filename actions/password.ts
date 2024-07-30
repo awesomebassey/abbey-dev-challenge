@@ -19,3 +19,10 @@ export const ResetPassword = async (values: z.infer<typeof PasswordSchema>) => {
   const { password, confirm_password } = validatedFields;
   return { data: { password, confirm_password } };
 };
+
+export const ChangePassword = async(values: z.infer<typeof PasswordSchema>) => {
+  const validatedFields = await PasswordSchema.parseAsync(values);
+  const { id, old_password, password, confirm_password } = validatedFields;
+
+  return { data: { password, confirm_password } };
+}

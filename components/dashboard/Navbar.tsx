@@ -16,8 +16,9 @@ import {
 } from "react-icons/pi";
 import { useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
+import { User } from "@prisma/client";
 
-export function Navbar() {
+export function Navbar({ user }: { user: User }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const params = searchParams.get("q");
@@ -39,7 +40,7 @@ export function Navbar() {
         <Box color={"white"} _hover={{ color: "brand.500" }} cursor={"pointer"}>
           <PiBellSimpleBold fontSize={"1.5rem"} />
         </Box>
-        <AvatarComponent size="sm" />
+        <AvatarComponent size="sm" user={user} />
         <Box display={{ base: "block", md: "none" }}>
           <Box
             display={{ base: "block", md: "none" }}
@@ -58,7 +59,7 @@ export function Navbar() {
             <DrawerOverlay />
             <DrawerContent>
               <DrawerBody p={0}>
-                <Sidebar />
+                <Sidebar user={user} />
               </DrawerBody>
             </DrawerContent>
           </Drawer>
