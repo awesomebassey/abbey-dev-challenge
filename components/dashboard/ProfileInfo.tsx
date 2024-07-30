@@ -1,10 +1,8 @@
 "use client";
 
-import React from "react";
 import { User } from "@prisma/client";
-import { Box, GridItem, Link, SimpleGrid, Stack, Text } from "@chakra-ui/react";
+import { Box, GridItem, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 import { AvatarComponent, ButtonLink } from "@/components";
-import NextLink from "next/link";
 
 export function ProfileInfo({ user }: { user: User }) {
   return (
@@ -28,7 +26,11 @@ export function ProfileInfo({ user }: { user: User }) {
       >
         <GridItem colSpan={1} />
         <Box position={"absolute"} left={5} bottom={{ base: 20, md: 5 }}>
-          <AvatarComponent size={{ base: "md", md: "xl" }} user={user} />
+          <AvatarComponent
+            size={{ base: "md", md: "xl" }}
+            first_name={user.first_name!}
+            last_name={user.last_name!}
+          />
         </Box>
         <GridItem colSpan={{ base: 11, md: 9 }} ps={{ base: 10, md: 6 }}>
           <Text
@@ -39,13 +41,13 @@ export function ProfileInfo({ user }: { user: User }) {
             {user.first_name} {user.last_name}
           </Text>
           <Text fontSize={"sm"} textTransform={"capitalize"}>
-            {user.city ? user.city + ", " : ""}
-            {user.state}
+            {user.city}
+            {user.city && user.state ? ", " + user.state : user.state}
           </Text>
         </GridItem>
         <GridItem colSpan={{ base: 12, md: 2 }}>
           <ButtonLink
-            colorScheme="secondary"
+            colorScheme="brand"
             variant="solid"
             text="Edit Profile"
             href="/settings"

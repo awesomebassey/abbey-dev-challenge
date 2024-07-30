@@ -6,15 +6,17 @@ export function ButtonLink({
   text,
   colorScheme,
   variant,
+  size,
 }: {
   href: string;
   text: string;
   colorScheme: string;
   variant: string;
+  size?: string
 }) {
   return (
     <Link href={href}>
-      <Button colorScheme={colorScheme} variant={variant} type="button">
+      <Button size={size} colorScheme={colorScheme} variant={variant} type="button">
         {text}
       </Button>
     </Link>

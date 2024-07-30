@@ -1,13 +1,15 @@
+import { IconType } from "react-icons/lib";
 import {
   PiGearBold,
   PiGridFourFill,
   PiUserCircleBold,
+  PiUserSwitchBold,
   PiUsersBold,
   PiUsersFourBold,
 } from "react-icons/pi";
 
 export const sidemenu: {
-  icon: any;
+  icon: IconType;
   label: string;
   link: string;
   query?: string;
@@ -107,3 +109,18 @@ export const personalInfoFields: {
     isRequired: false
   },
 ];
+
+export const peopleTags: {tag: string; icon: IconType}[] = [
+  {
+    tag: "Friends",
+    icon: PiUsersFourBold
+  },
+  {
+    tag: "Followers",
+    icon: PiUsersBold
+  },
+  {
+    tag: "People You May Know",
+    icon: PiUserSwitchBold
+  },
+]

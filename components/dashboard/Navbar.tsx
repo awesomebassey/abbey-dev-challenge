@@ -40,7 +40,11 @@ export function Navbar({ user }: { user: User }) {
         <Box color={"white"} _hover={{ color: "brand.500" }} cursor={"pointer"}>
           <PiBellSimpleBold fontSize={"1.5rem"} />
         </Box>
-        <AvatarComponent size="sm" user={user} />
+        <AvatarComponent
+          size="sm"
+          first_name={user.first_name!}
+          last_name={user.last_name!}
+        />
         <Box display={{ base: "block", md: "none" }}>
           <Box
             display={{ base: "block", md: "none" }}

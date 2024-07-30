@@ -4,17 +4,19 @@ import Link from "next/link";
 
 export function AvatarComponent({
   size,
-  user,
+  first_name,
+  last_name
 }: {
   size: ResponsiveValue<string>;
-  user: User;
+  first_name: string;
+  last_name: string;
 }) {
   return (
     <Link href={"/profile"}>
       <Avatar
         colorScheme="brand"
         size={size}
-        name={`${user?.first_name} ${user?.last_name}`}
+        name={`${first_name} ${last_name}`}
       />
     </Link>
   );

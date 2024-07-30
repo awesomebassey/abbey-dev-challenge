@@ -49,7 +49,11 @@ export function Sidebar({ user }: { user: User }) {
         </Link>
       ))}
       <Flex mt={"auto"} alignItems={"center"} gap={4}>
-        <AvatarComponent size="sm" user={user} />
+        <AvatarComponent
+          size="sm"
+          first_name={user.first_name!}
+          last_name={user.last_name!}
+        />
         <Text
           textDecor={"underline"}
           cursor={"pointer"}
